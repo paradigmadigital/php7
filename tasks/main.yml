@@ -1,0 +1,57 @@
+---
+# tasks file for php7
+- name: Install php7 on debian or derivates
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - php7.0-cgi
+    - php7.0-cli
+    - php7.0-common
+    - php7.0-fpm
+    - php7.0-intl
+    - php7.0-mysql
+    - php7.0-mbstring
+    - php7.0-xml
+    - php7.0-ldap
+    - php7.0-gd
+    - php7.0-bcmath
+  when:
+    ansible_distribution == 'Debian'
+    or
+    ansible_distribution == 'Ubuntu'
+  notify:
+    - enable php
+
+- name: Install ius repository
+  include_role:
+    name: ius
+  when:
+    ansible_distribution == 'CentOS'
+    or
+    ansible_distribution == 'RedHat'
+
+- name: Install php7 on centos or derivates
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - php70u-cgi
+    - php70u-cli
+    - php70u-common
+    - php70u-fpm
+    - php70u-intl
+    - php70u-mysqlnd
+    - php70u-mbstring
+    - php70u-xml
+    - php70u-ldap
+    - php70u-pdo
+    - php70u-gd
+    - php70u-bcmath
+  when:
+    ansible_distribution == 'CentOS'
+    or
+    ansible_distribution == 'RedHat'
+  notify:
+    - enable php

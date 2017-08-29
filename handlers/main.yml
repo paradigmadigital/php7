@@ -1,0 +1,31 @@
+---
+# testear
+- name: Enable php7-fpm
+  become: yes
+  systemd:
+    name: php-fpm.service
+    enabled: yes
+  when:
+    (ansible_distribution == 'CentOS'
+    or
+    ansible_distribution == 'RedHat')
+    and
+    (ansible_connection != 'docker'
+    or
+    force_docker == 'yes')
+  listen: enable php
+
+- name: Enable php7-fpm
+  become: yes
+  systemd:
+    name: php7.0-fpm.service
+    enabled: yes
+  when:
+    (ansible_distribution == 'Debian'
+    or
+    ansible_distribution == 'Ubuntu')
+    and
+    (ansible_connection != 'docker'
+    or
+    force_docker == 'yes')
+  listen: enable php

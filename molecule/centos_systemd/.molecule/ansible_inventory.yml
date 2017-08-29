@@ -1,0 +1,11 @@
+# Molecule managed
+
+---
+all:
+  hosts:
+    centos_systemd_la: &id001
+      ansible_connection: docker
+ungrouped:
+  hosts:
+    centos_systemd_la: *id001
+  vars: {}
