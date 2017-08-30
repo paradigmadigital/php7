@@ -16,7 +16,7 @@ provisioner:
   lint:
     name: ansible-lint
   options:
-    e: foce_docker=yes
+    e: force_docker=yes
 scenario:
   name: solita_ubuntu_systemd
 verifier:
