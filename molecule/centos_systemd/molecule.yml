@@ -1,0 +1,25 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: centos_systemd_la
+    image: centos/systemd
+    privileged: True
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+  options:
+    e: force_docker=yes
+scenario:
+  name: centos_systemd
+verifier:
+  name: testinfra
+  lint:
+    name: flake8

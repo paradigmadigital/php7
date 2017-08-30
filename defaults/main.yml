@@ -1,0 +1,3 @@
+---
+# defaults file for php7
+force_docker: no

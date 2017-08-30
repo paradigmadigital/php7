@@ -1,0 +1,4 @@
+---
+- src:
+  version: v0.1
+- geerlingguy.nginx
